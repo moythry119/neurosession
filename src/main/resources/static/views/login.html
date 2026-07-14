@@ -1,0 +1,159 @@
+<div class="landing">
+
+    <div class="login-shell">
+
+        <!-- Institution / study information -->
+        <div class="login-info">
+
+            <header class="brand-row">
+                <span class="brand-name">NeuroSession</span>
+                <span class="brand-sub">Clinical Research Data Platform</span>
+            </header>
+
+            <div class="login-intro">
+                <h1>A data platform for Virtual Reality Hypnosis research</h1>
+                <p>
+                    NeuroSession brings participant data, session outcomes, and study documentation into one structured workspace.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>Participant records</h3>
+                    <p>Store participant profiles and baseline assessments.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Session documentation</h3>
+                    <p>Record hypnosis and VR hypnosis session outcomes and participant feedback.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Study monitoring</h3>
+                    <p>Track completed sessions, study conditions, and missing data.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>LLM-assisted reporting <span class="status-tag">In progress</span></h3>
+                    <p> Generate draft participant summaries.</p>
+                </div>
+            </div>
+
+            <p class="sidenote">
+                <strong>Note —</strong> LLM-assisted reporting is still under active development.
+                Generated summaries may be incomplete and should be treated as a draft only.
+            </p>
+
+            <div class="study-summary">
+                <h2>Current study</h2>
+                <p class="study-name">SMARTHY-II</p>
+                <dl class="study-facts">
+                    <div><dt>Design</dt><dd>VRH vs. HYP</dd></div>
+                    <div><dt>Sample</dt><dd>66 adults</dd></div>
+                    <div><dt>EEG</dt><dd>128-channel</dd></div>
+                    <div><dt>Analysis</dt><dd>ML + SHAP</dd></div>
+                </dl>
+            </div>
+
+            <div class="tool-note">
+                <p><strong>Human review required.</strong> LLM-generated summaries are a documentation aid. They do not replace clinical judgment or scientific interpretation.</p>
+            </div>
+
+        </div>
+
+        <!-- Login panel -->
+        <div class="login-panel">
+
+            <div class="institution-label">
+                <strong>GIGA Consciousness Lab</strong>
+                <span>University of Liège</span>
+            </div>
+
+            <div class="login-card">
+
+                <div class="login-card-heading">
+                    <h2>Researcher sign-in</h2>
+                    <p>Enter your credentials to access the workspace.</p>
+                </div>
+
+                <form ng-submit="login()" novalidate>
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input
+                                id="email"
+                                type="email"
+                                ng-model="credentials.email"
+                                placeholder="name@uliege.be"
+                                autocomplete="username"
+                                required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                                id="password"
+                                type="password"
+                                ng-model="credentials.password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                        >
+                    </div>
+
+                    <div class="error-msg" ng-show="error" role="alert">
+                        {{ error }}
+                    </div>
+
+                    <button type="submit" class="btn-login">Sign in</button>
+
+                </form>
+
+            </div>
+
+            <p class="login-footnote">Access restricted to authorized research staff.</p>
+
+        </div>
+
+    </div>
+
+    <!-- Technology -->
+    <section class="tech-section">
+        <div class="section-inner">
+
+            <p class="tech-label">Platform Technology</p>
+
+            <div class="tech-badges">
+                <span class="tech-badge">Java 17</span>
+                <span class="tech-badge">Spring Boot 3</span>
+                <span class="tech-badge">Spring Security</span>
+                <span class="tech-badge">JWT Authentication</span>
+                <span class="tech-badge">Spring Data JPA</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">Hibernate</span>
+                <span class="tech-badge">AngularJS</span>
+                <span class="tech-badge">BCrypt</span>
+                <span class="tech-badge">REST API</span>
+                <span class="tech-badge">LLM Reporting</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Credits -->
+    <footer class="landing-footer">
+        <div class="footer-inner">
+
+            <div class="footer-left">
+                <strong>GIGA Consciousness Lab</strong>
+                <span>University of Liège</span>
+                <small>Study supervision: Dr. Audrey Vanhaudenhuyse</small>
+            </div>
+
+            <div class="footer-right">
+                <strong>NeuroSession</strong>
+                <small>Developed by Moythry Manir Samia</small>
+            </div>
+
+        </div>
+    </footer>
+
+</div>

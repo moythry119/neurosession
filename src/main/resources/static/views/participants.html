@@ -1,0 +1,104 @@
+<div class="app-layout">
+    <nav class="sidebar">
+        <div class="logo">NeuroSession</div>
+        <ul>
+            <li><a href="#!/dashboard">Dashboard</a></li>
+            <li><a href="#!/participants" class="active">Participants</a></li>
+            <li><a href="#!/monitoring">Study Monitoring</a></li>
+        </ul>
+    </nav>
+    <main class="content">
+        <h2>Participants</h2>
+
+        <div class="success" ng-show="success">{{ success }}</div>
+        <div class="error" ng-show="error">{{ error }}</div>
+
+        <div class="card">
+            <h3>Add Participant</h3>
+            <form ng-submit="create()">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Code</label>
+                        <input ng-model="newParticipant.participantCode" placeholder="S1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Sex (0=M, 1=F)</label>
+                        <input type="number" ng-model="newParticipant.sex" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" ng-model="newParticipant.age" required>
+                    </div>
+                    <div class="form-group">
+                        <label>EHS Level</label>
+                        <select ng-model="newParticipant.ehsLevel">
+                            <option value="Bas">Bas</option>
+                            <option value="Moyen">Moyen</option>
+                            <option value="Elevé">Elevé</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>QPI Total</label>
+                        <input type="number" step="0.01" ng-model="newParticipant.qpiTotal">
+                    </div>
+                    <div class="form-group">
+                        <label>STAI-Etat</label>
+                        <input type="number" step="0.01" ng-model="newParticipant.staiEtatTotal">
+                    </div>
+                    <div class="form-group">
+                        <label>STAI-Trait</label>
+                        <input type="number" step="0.01" ng-model="newParticipant.staiTraitTotal">
+                    </div>
+                    <div class="form-group">
+                        <label>TAS Total</label>
+                        <input type="number" step="0.01" ng-model="newParticipant.tasTotal">
+                    </div>
+                    <div class="form-group">
+                        <label>DES Total</label>
+                        <input type="number" step="0.01" ng-model="newParticipant.desTotal">
+                    </div>
+                    <div class="form-group">
+                        <label>EHS Score</label>
+                        <input type="number" step="0.01" ng-model="newParticipant.ehsScore">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Add Participant</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>All Participants ({{ participants.length }})</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Sex</th>
+                    <th>Age</th>
+                    <th>EHS Level</th>
+                    <th>QPI</th>
+                    <th>STAI-E</th>
+                    <th>DES</th>
+                    <th>Created</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="p in participants">
+                    <td>{{ p.participantCode }}</td>
+                    <td>{{ p.sex === 0 ? 'M' : 'F' }}</td>
+                    <td>{{ p.age }}</td>
+                    <td>{{ p.ehsLevel }}</td>
+                    <td>{{ p.qpiTotal }}</td>
+                    <td>{{ p.staiEtatTotal }}</td>
+                    <td>{{ p.desTotal }}</td>
+                    <td>{{ p.createdAt | date:'dd/MM/yyyy' }}</td>
+                    <td><a href="#!/participants/{{ p.id }}" class="btn-view">View</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <p ng-show="participants.length === 0" class="empty">No participants yet.</p>
+        </div>
+    </main>
+</div>

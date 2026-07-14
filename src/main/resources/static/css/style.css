@@ -1,0 +1,1371 @@
+/* =========================================================
+   NEUROSESSION — APPLICATION STYLESHEET
+   GIGA Consciousness Lab, University of Liège
+   ========================================================= */
+
+/* =========================================================
+   1. RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+
+    background: #f2f3f4;
+    color: #1c2024;
+
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+
+svg {
+    display: block;
+}
+
+/* =========================================================
+   2. DESIGN VARIABLES
+   ========================================================= */
+
+:root {
+    --background: #f2f3f4;
+    --surface: #ffffff;
+    --surface-alt: #ebeced;
+    --surface-soft: #f7f7f8;
+
+    --text: #1c2024;
+    --text-secondary: #565d64;
+    --text-light: #878e94;
+
+    --border: #d7d9db;
+    --border-dark: #bcbfc2;
+    --border-light: #e7e8ea;
+
+    --accent: #7a2f40;
+    --accent-dark: #5e2431;
+    --accent-light: #f1e4e7;
+
+    --success: #3f6b4c;
+    --success-light: #e6efe8;
+
+    --warning: #8f6423;
+    --warning-light: #f3ead9;
+
+    --danger: #a13d38;
+    --danger-light: #f5e4e2;
+
+    --info: #3d5f74;
+    --info-light: #e5edf1;
+
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, "Liberation Mono", monospace;
+
+    --radius-small: 3px;
+    --radius: 6px;
+
+    --shadow-small: 0 1px 2px rgba(20, 22, 25, 0.06);
+    --shadow-card: 0 1px 3px rgba(20, 22, 25, 0.08), 0 1px 2px rgba(20, 22, 25, 0.05);
+
+    --sidebar-width: 250px;
+}
+
+/* =========================================================
+   3. SHARED CONTAINERS
+   ========================================================= */
+
+.landing {
+    min-height: 100vh;
+    background: var(--background);
+}
+
+.section-inner {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+/* =========================================================
+   4. LOGIN PAGE — SPLIT LAYOUT
+   ========================================================= */
+
+.login-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(400px, 460px);
+    min-height: 100vh;
+}
+
+/* --- Left: institution / study information panel --- */
+
+.login-info {
+    display: flex;
+    flex-direction: column;
+
+    padding: 44px clamp(36px, 5vw, 72px) 48px;
+
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+}
+
+.brand-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.brand-name {
+    color: var(--text);
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.brand-sub {
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+.login-intro {
+    max-width: 620px;
+    margin-top: 30px;
+}
+
+.login-intro h1 {
+    color: var(--text);
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.login-intro p {
+    max-width: 600px;
+    margin-top: 16px;
+
+    color: var(--text-secondary);
+    font-size: 17px;
+    line-height: 1.65;
+}
+
+.login-intro strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* --- Feature highlight boxes --- */
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+
+    max-width: 620px;
+    margin-top: 28px;
+}
+
+.feature-box {
+    padding: 16px 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-soft);
+}
+
+.feature-box h3 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    color: var(--text);
+    font-size: 14.5px;
+    font-weight: 700;
+}
+
+.feature-box p {
+    margin-top: 6px;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    line-height: 1.55;
+}
+
+.status-tag {
+    padding: 2px 8px;
+    border: 1px solid #dcc191;
+    border-radius: 10px;
+    background: var(--warning-light);
+    color: var(--warning);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+/* --- Sidenote --- */
+
+.sidenote {
+    max-width: 620px;
+    margin-top: 14px;
+
+    color: var(--text-light);
+    font-size: 12.5px;
+    line-height: 1.6;
+}
+
+.sidenote strong {
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+/* --- Study summary block --- */
+
+.study-summary {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    max-width: 620px;
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-light);
+}
+
+.study-summary h2 {
+    color: var(--text-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.study-name {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.study-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.study-facts div {
+    display: contents;
+}
+
+.study-facts dt {
+    display: none;
+}
+
+.study-facts dd {
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface-alt);
+    color: var(--text-secondary);
+    font-size: 12.5px;
+}
+
+/* --- Review / compliance note --- */
+
+.tool-note {
+    max-width: 600px;
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.tool-note p {
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--info);
+    border-radius: var(--radius-small);
+    background: var(--info-light);
+    color: #33505f;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.tool-note strong {
+    color: var(--text);
+    font-weight: 700;
+}
+
+/* =========================================================
+   5. LOGIN PANEL (RIGHT)
+   ========================================================= */
+
+.login-panel {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+
+    padding: 48px clamp(32px, 5vw, 56px);
+
+    background: var(--surface-soft);
+}
+
+.institution-label {
+    margin-bottom: 32px;
+}
+
+.institution-label strong,
+.institution-label span {
+    display: block;
+}
+
+.institution-label strong {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.institution-label span {
+    margin-top: 2px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.login-card {
+    width: 100%;
+    padding: 44px 40px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+}
+
+.login-card-heading {
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.login-card-heading h2 {
+    color: var(--text);
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.login-card-heading p {
+    margin-top: 6px;
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+.login-panel form {
+    margin-top: 28px;
+}
+
+/* --- Form fields --- */
+
+.login-panel .form-group {
+    margin-bottom: 24px;
+}
+
+.login-panel .form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.input-container,
+.input-shell {
+    position: relative;
+    width: 100%;
+}
+
+.input-container input,
+.input-shell input {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 14px;
+
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-small);
+
+    background: var(--surface);
+    color: var(--text);
+    font-size: 16px;
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-container input::placeholder,
+.input-shell input::placeholder {
+    color: var(--text-light);
+}
+
+.input-container input:focus,
+.input-shell input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(122, 47, 64, 0.12);
+}
+
+.login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin: 2px 0 20px;
+}
+
+.remember-me,
+.remember-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.remember-me input,
+.remember-control input {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--accent);
+}
+
+.forgot-link,
+.text-link {
+    color: var(--accent);
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.forgot-link:hover,
+.text-link:hover {
+    text-decoration: underline;
+}
+
+.login-panel .error-msg {
+    margin-bottom: 16px;
+    padding: 10px 12px;
+    border: 1px solid #d3a6a2;
+    border-left: 3px solid var(--danger);
+    border-radius: var(--radius-small);
+    background: var(--danger-light);
+    color: #6d2f2b;
+    font-size: 13px;
+}
+
+.login-panel .btn-login {
+    width: 100%;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--accent-dark);
+    border-radius: var(--radius-small);
+
+    background: var(--accent);
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: background 0.15s ease;
+}
+
+.login-panel .btn-login:hover {
+    background: var(--accent-dark);
+}
+
+.login-footnote {
+    margin-top: 18px;
+    color: var(--text-light);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* =========================================================
+   5b. TECHNOLOGY SECTION
+   ========================================================= */
+
+.tech-section {
+    padding: 26px 0;
+    background: #262b2f;
+}
+
+.tech-label {
+    color: #aab2b8;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.tech-badge {
+    padding: 6px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-small);
+    background: rgba(255, 255, 255, 0.05);
+    color: #d7dcdf;
+    font-size: 13px;
+}
+
+/* =========================================================
+   6. PUBLIC FOOTER
+   ========================================================= */
+
+.landing-footer {
+    padding: 22px 0;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.footer-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.footer-left strong,
+.footer-left span,
+.footer-left small,
+.footer-right strong,
+.footer-right small {
+    display: block;
+}
+
+.footer-left strong,
+.footer-right strong {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.footer-left span {
+    margin-top: 2px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.footer-left small,
+.footer-right small {
+    margin-top: 4px;
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+/* =========================================================
+   7. AUTHENTICATED APPLICATION LAYOUT
+   ========================================================= */
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    background: var(--background);
+}
+
+.sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+
+    width: var(--sidebar-width);
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 26px 0 20px;
+
+    border-right: 1px solid #374049;
+    background: #262b2f;
+    color: white;
+}
+
+.logo {
+    margin: 0 22px;
+    padding: 0 0 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.logo::after {
+    content: "Research Data System";
+    display: block;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.sidebar ul {
+    flex: 1;
+    padding: 18px 0;
+    list-style: none;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 11px 22px;
+
+    border-left: 3px solid transparent;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 14px;
+    text-decoration: none;
+
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    border-left-color: var(--accent);
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+.user-info {
+    margin: 0 22px;
+    padding: 16px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.user-info p {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.user-info .role {
+    margin-top: 3px;
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.content {
+    flex: 1;
+    min-width: 0;
+
+    margin-left: var(--sidebar-width);
+    padding: 36px clamp(24px, 4vw, 52px) 55px;
+}
+
+.content h2 {
+    margin-bottom: 24px;
+    color: var(--text);
+    font-size: 23px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   8. APPLICATION CARDS
+   ========================================================= */
+
+.card {
+    margin-bottom: 20px;
+    padding: 24px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-small);
+}
+
+.card h3 {
+    margin-bottom: 16px;
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 17px;
+}
+
+.card-header h3 {
+    margin: 0;
+}
+
+/* =========================================================
+   9. DASHBOARD STATS
+   ========================================================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    padding: 18px 20px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-small);
+}
+
+.stat-card h3 {
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.stat-card p {
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   10. APPLICATION FORMS
+   ========================================================= */
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-small);
+
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-group textarea {
+    min-height: 105px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(122, 47, 64, 0.10);
+}
+
+/* =========================================================
+   11. BUTTONS
+   ========================================================= */
+
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+.btn-view,
+.btn-back,
+.btn-logout {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    border-radius: var(--radius-small);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+    padding: 10px 16px;
+    border: 1px solid var(--accent-dark);
+    background: var(--accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--accent-dark);
+}
+
+.btn-secondary {
+    margin-right: 8px;
+    padding: 9px 15px;
+    border: 1px solid var(--border-dark);
+    background: var(--surface);
+    color: var(--text);
+}
+
+.btn-secondary:hover {
+    background: var(--surface-alt);
+}
+
+.btn-danger {
+    padding: 9px 15px;
+    border: 1px solid #7c332e;
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #8a3530;
+}
+
+.btn-view {
+    padding: 6px 11px;
+    border: 1px solid var(--border-dark);
+    background: var(--surface);
+    color: var(--accent-dark);
+    font-size: 12.5px;
+}
+
+.btn-view:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent-dark);
+}
+
+.btn-back {
+    padding: 5px 0;
+    border: 0;
+    border-bottom: 1px solid var(--border-dark);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.btn-back:hover {
+    color: var(--accent);
+}
+
+.btn-logout {
+    margin-top: 10px;
+    padding: 7px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 12.5px;
+}
+
+.btn-logout:hover {
+    border-color: rgba(255, 255, 255, 0.42);
+    color: white;
+}
+
+/* =========================================================
+   12. TABLES
+   ========================================================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 11px 12px;
+    border-top: 1px solid var(--border);
+    border-bottom: 2px solid var(--border-dark);
+
+    background: var(--surface-alt);
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-align: left;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-light);
+
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+
+    vertical-align: middle;
+}
+
+tbody tr:nth-child(even) td {
+    background: #fafafb;
+}
+
+tr:hover td {
+    background: #f0f1f2;
+}
+
+.empty {
+    padding: 32px 18px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    text-align: center;
+}
+
+/* =========================================================
+   13. SYSTEM MESSAGES
+   ========================================================= */
+
+.error,
+.success {
+    margin-bottom: 16px;
+    padding: 11px 14px;
+    border-radius: var(--radius-small);
+    font-size: 13.5px;
+}
+
+.error {
+    border: 1px solid #d3a6a2;
+    border-left: 3px solid var(--danger);
+    background: var(--danger-light);
+    color: #6d2f2b;
+}
+
+.success {
+    border: 1px solid #b3c9b7;
+    border-left: 3px solid var(--success);
+    background: var(--success-light);
+    color: #35553f;
+}
+
+/* =========================================================
+   14. PARTICIPANT DETAILS
+   ========================================================= */
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    gap: 0;
+
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+}
+
+.info-grid.small {
+    margin: 16px 0;
+}
+
+.info-item {
+    padding: 13px 14px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.info-item label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    font-weight: 600;
+}
+
+.info-item span {
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   15. SESSION CARDS
+   ========================================================= */
+
+.sessions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 21px;
+}
+
+.session-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.session-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+}
+
+.session-header h3 {
+    margin: 0;
+    color: white;
+    font-size: 14.5px;
+    font-weight: 700;
+}
+
+.session-header.vrh {
+    background: #4a6350;
+}
+
+.session-header.hyp {
+    background: var(--accent-dark);
+}
+
+.badge {
+    padding: 4px 9px;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: var(--radius-small);
+    background: transparent;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* --- Study monitoring completion badges --- */
+
+.progress-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.progress-badge.complete {
+    border: 1px solid #b3c9b7;
+    background: var(--success-light);
+    color: #35553f;
+}
+
+.progress-badge.partial {
+    border: 1px solid #dcc191;
+    background: var(--warning-light);
+    color: #705019;
+}
+
+.progress-badge.none {
+    border: 1px solid #d3a6a2;
+    background: var(--danger-light);
+    color: #6d2f2b;
+}
+
+/* =========================================================
+   16. VAS VALUES
+   ========================================================= */
+
+.vas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.vas-item {
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+    background: var(--surface-alt);
+}
+
+.vas-item label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    font-weight: 600;
+}
+
+.vas-item span {
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.vas-bar-container {
+    height: 6px;
+    margin: 7px 0 4px;
+    overflow: hidden;
+    border-radius: 3px;
+    background: #d8dbde;
+}
+
+.vas-bar {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.vas-bar.vrh-pre  { background: var(--accent); }
+.vas-bar.vrh-post { background: var(--success); }
+.vas-bar.hyp-pre  { background: #3d1f28; }
+.vas-bar.hyp-post { background: #2a4a33; }
+
+/* =========================================================
+   17. MODALS
+   ========================================================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    overflow-y: auto;
+    padding: 45px 18px;
+
+    background: rgba(20, 23, 26, 0.65);
+}
+
+.modal {
+    width: min(720px, 100%);
+    margin-bottom: 35px;
+    padding: 30px;
+
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.modal h3 {
+    margin-bottom: 20px;
+    color: var(--text);
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.modal h4 {
+    margin: 22px 0 12px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.quick-links {
+    margin-top: 15px;
+}
+
+/* =========================================================
+   18. RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1120px) {
+    .login-shell {
+        grid-template-columns: minmax(0, 1fr) minmax(380px, 420px);
+    }
+}
+
+@media (max-width: 980px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    .app-layout {
+        display: block;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 14px 16px;
+    }
+
+    .sidebar ul li a {
+        padding: 9px 14px;
+    }
+
+    .user-info {
+        margin-bottom: 4px;
+    }
+}
+
+@media (max-width: 880px) {
+    .login-shell {
+        display: block;
+    }
+
+    .login-info {
+        padding: 32px 30px 40px;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .tool-note {
+        margin-top: 28px;
+    }
+
+    .login-panel {
+        padding: 40px 25px 48px;
+    }
+
+    .footer-inner {
+        display: block;
+    }
+
+    .footer-right {
+        margin-top: 16px;
+        text-align: left;
+    }
+}
+
+@media (max-width: 680px) {
+    .login-intro h1 {
+        font-size: 24px;
+    }
+
+    .study-facts {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid,
+    .sessions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 27px 15px 45px;
+    }
+
+    .card,
+    .modal {
+        padding: 20px;
+    }
+
+    .card-header,
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .vas-grid,
+    .info-grid,
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        min-width: 680px;
+    }
+
+    .login-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+/* =========================================================
+   19. ACCESSIBILITY
+   ========================================================= */
+
+:focus-visible {
+    outline: 2px solid rgba(122, 47, 64, 0.4);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

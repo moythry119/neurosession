@@ -1,0 +1,64 @@
+<div class="app-layout">
+    <nav class="sidebar">
+        <div class="logo">NeuroSession</div>
+        <ul>
+            <li><a href="#!/dashboard">Dashboard</a></li>
+            <li><a href="#!/participants">Participants</a></li>
+            <li><a href="#!/monitoring" class="active">Study Monitoring</a></li>
+        </ul>
+        <div class="user-info">
+            <p>{{ email }}</p>
+            <p class="role">{{ role }}</p>
+            <button ng-click="logout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+    <main class="content">
+        <h2>Study Monitoring</h2>
+
+        <div class="error" ng-show="error">{{ error }}</div>
+
+        <div class="stats-grid" ng-show="summary">
+            <div class="stat-card">
+                <h3>Complete</h3>
+                <p>{{ summary.complete }} / {{ summary.total }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Missing VRH</h3>
+                <p>{{ summary.missingVrh }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Missing HYP</h3>
+                <p>{{ summary.missingHyp }}</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Completion by Participant</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>VRH</th>
+                    <th>HYP</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="p in progress">
+                    <td><a href="#!/participants/{{ p.id }}" class="text-link">{{ p.participantCode }}</a></td>
+                    <td>{{ p.vrhCompleted ? 'Done' : 'Missing' }}</td>
+                    <td>{{ p.hypCompleted ? 'Done' : 'Missing' }}</td>
+                    <td>
+                        <span class="progress-badge" ng-class="{
+                            'complete': p.status === 'Complete',
+                            'partial': p.status === 'Missing VRH' || p.status === 'Missing HYP',
+                            'none': p.status === 'Missing both'
+                        }">{{ p.status }}</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <p ng-show="progress.length === 0" class="empty">No participants yet.</p>
+        </div>
+    </main>
+</div>

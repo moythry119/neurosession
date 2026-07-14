@@ -1,0 +1,35 @@
+<div class="app-layout">
+    <nav class="sidebar">
+        <div class="logo">NeuroSession</div>
+        <ul>
+            <li><a href="#!/dashboard" class="active">Dashboard</a></li>
+            <li><a href="#!/participants">Participants</a></li>
+            <li><a href="#!/monitoring">Study Monitoring</a></li>
+        </ul>
+        <div class="user-info">
+            <p>{{ email }}</p>
+            <p class="role">{{ role }}</p>
+            <button ng-click="logout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+    <main class="content">
+        <h2>Welcome back</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Study</h3>
+                <p>SMARTHY-II</p>
+            </div>
+            <div class="stat-card">
+                <h3>Protocol</h3>
+                <p>VRH vs HYP</p>
+            </div>
+            <div class="stat-card">
+                <h3>Target N</h3>
+                <p>66 participants</p>
+            </div>
+        </div>
+        <div class="quick-links">
+            <a href="#!/participants" class="btn-primary">View Participants</a>
+        </div>
+    </main>
+</div>
