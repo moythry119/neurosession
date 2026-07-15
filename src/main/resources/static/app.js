@@ -1,4 +1,4 @@
-angular.module('neuroSession', ['ngRoute'])
+angular.module('neuroSession', ['ngRoute', 'ngSanitize'])
 
     .config(function($routeProvider, $httpProvider) {
 
@@ -124,10 +124,13 @@ angular.module('neuroSession', ['ngRoute'])
             });
     })
 
-    .controller('ParticipantDetailController', function($scope, $http, $routeParams, $location) {
+    .controller('ParticipantDetailController', function($scope, $http, $routeParams, $location, $sce) {
         var id = $routeParams.id;
         $scope.editing = false;
         $scope.showSessionForm = false;
+        $scope.showReport = false;
+        $scope.generatingReport = false;
+        $scope.reportHtml = '';
         $scope.sessionData = {};
         $scope.vrhSession = null;
         $scope.hypSession = null;
@@ -222,6 +225,27 @@ angular.module('neuroSession', ['ngRoute'])
                 .then(function() {
                     $scope.success = 'Session deleted.';
                     loadSessions();
+                });
+        };
+
+        // generates clinical summary + VRH vs HYP comparison via Anthropic API
+        $scope.generateReport = function() {
+            $scope.generatingReport = true;
+            $scope.error = '';
+
+            $http.get('/api/participants/' + id + '/report')
+                .then(function(res) {
+                    $scope.reportHtml = $sce.trustAsHtml(
+                        res.data.report
+                            .replace(/\n/g, '<br>')
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    );
+                    $scope.showReport = true;
+                    $scope.generatingReport = false;
+                })
+                .catch(function(err) {
+                    $scope.error = 'Could not generate report: ' + err.status;
+                    $scope.generatingReport = false;
                 });
         };
     });

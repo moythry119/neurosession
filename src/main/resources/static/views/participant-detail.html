@@ -18,6 +18,10 @@
         <div class="page-header">
             <a href="#!/participants" class="btn-back">← All participants</a>
             <h2>Participant {{ participant.participantCode }}</h2>
+            <button ng-click="generateReport()" class="btn-primary"
+                    ng-disabled="generatingReport">
+                {{ generatingReport ? 'Generating...' : 'Generate Report' }}
+            </button>
         </div>
 
         <div class="success" ng-show="success">{{ success }}</div>
@@ -314,6 +318,21 @@
                     </div>
 
                 </form>
+            </div>
+        </div>
+
+        <!-- Report Modal -->
+        <div class="modal-overlay" ng-if="showReport">
+            <div class="modal report-modal">
+                <div class="modal-header">
+                    <h3>Participant Report — {{ participant.participantCode }}</h3>
+                    <button ng-click="showReport=false" class="btn-secondary">Close</button>
+                </div>
+                <div class="report-disclaimer">
+                    This report is a documentation aid only.
+                    All content requires human review before use.
+                </div>
+                <div class="report-body" ng-bind-html="reportHtml"></div>
             </div>
         </div>
 
