@@ -4,6 +4,8 @@
 
 It was built for the **GIGA Consciousness Lab** (University of Liège) to support the **SMARTHY-II** study, which compares Virtual Reality Hypnosis (VRH) against traditional hypnosis (HYP) using resting-state EEG, but the data model and workflow are generic enough to support other hypnosis/VR research protocols.
 
+**Live demo:** [neurosession-app-production.up.railway.app](https://neurosession-app-production.up.railway.app)
+
 ---
 
 ## Table of contents
