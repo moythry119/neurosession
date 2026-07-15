@@ -110,6 +110,7 @@ All endpoints below (except auth) require an `Authorization: Bearer <token>` hea
 | POST   | `/api/participants/{id}/sessions`      | Add a session (VRH or HYP) for a participant            |
 | PUT    | `/api/sessions/{sessionId}`            | Update a session                                        |
 | DELETE | `/api/sessions/{sessionId}`            | Delete a session                                        |
+| GET    | `/api/participants/{id}/report`        | Generate an LLM-drafted participant summary (Groq) — draft only, requires human review |
 
 ---
 
@@ -137,6 +138,7 @@ createdb neurosession_dev
 ```bash
 export DB_PASSWORD=<your local postgres password>
 export JWT_SECRET=<any long random string>
+export GROQ_API_KEY=<your Groq API key>
 ```
 
 `DB_URL` (`jdbc:postgresql://localhost:5432/neurosession_dev`) and `DB_USERNAME` (`postgres`) already default to sensible local values — override them only if your setup differs.
@@ -150,6 +152,9 @@ spring:
 app:
   jwt:
     secret: <any long random string>
+groq:
+  api:
+    key: <your Groq API key>
 ```
 
 and run with the `local` Spring profile active (`SPRING_PROFILES_ACTIVE=local`).
@@ -182,6 +187,7 @@ Then sign in from the browser at `http://localhost:8080`.
 | `DB_USERNAME` | No       | `postgres`                                            | Postgres username                  |
 | `DB_PASSWORD` | **Yes**  | —                                                      | Postgres password                  |
 | `JWT_SECRET`  | **Yes**  | —                                                      | Signing key for issued JWTs        |
+| `GROQ_API_KEY`| **Yes**  | —                                                      | Groq API key used for LLM-assisted report generation |
 
 ---
 
@@ -222,7 +228,7 @@ neurosession/
 
 ## Known limitations / roadmap
 
-- **LLM-assisted reporting** is not yet implemented — the login page marks it "in progress." When built, generated summaries will always require human review before use; they are a documentation aid, not a substitute for clinical or scientific judgment.
+- **LLM-assisted reporting** (`GET /api/participants/{id}/report`) is implemented — it calls Groq's API to draft a participant summary — but is new and marked "in progress" on the login page. The call has no timeout or error handling yet, so a slow/failed Groq request will surface as a generic server error rather than a friendly message. Generated summaries always require human review before use; they are a documentation aid, not a substitute for clinical or scientific judgment.
 - No password-reset or email-verification flow yet.
 - No automated tests beyond the default Spring Boot context-load test.
 - The frontend is a small AngularJS app with no build tooling — fine for its current size, but would need a rethink if the feature set grows significantly.
