@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**", "/error").permitAll()
-                .requestMatchers("/", "/index.html", "/app.js", "/css/**", "/views/**", "/favicon.ico").permitAll()
+                .requestMatchers("/", "/index.html", "/app.js", "/css/**", "/views/**", "/vendor/**", "/favicon.ico").permitAll()
                 .anyRequest().authenticated()
         )
                 .sessionManagement(session -> session
