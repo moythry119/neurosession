@@ -41,7 +41,7 @@ public class Participant {
     // Baseline questionnaire scores
 
     @Column
-    private Double qpiTotal;              // QPI-TOT: hypnotic depth
+    private Double qpiTotal;              // QPI-TOT: immersion propensity (Questionnaire sur la Propension à l'Immersion)
 
     @Column
     private Double staiEtatTotal;         // STAI-ETAT-TOT: state anxiety
@@ -50,7 +50,7 @@ public class Participant {
     private Double staiTraitTotal;        // STAI-TRAIT-TOT: trait anxiety
 
     @Column
-    private Double tasTotal;              // TAS-TOT: alexithymia
+    private Double tasTotal;              // TAS-TOT: absorption (Tellegen Absorption Scale)
 
     @Column
     private Double desTotal;              // DES-TOT: dissociation

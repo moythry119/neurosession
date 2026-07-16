@@ -248,4 +248,8 @@ angular.module('neuroSession', ['ngRoute', 'ngSanitize'])
                     $scope.generatingReport = false;
                 });
         };
+
+        $scope.closeReport = function() {
+            $scope.showReport = false;
+        };
     });

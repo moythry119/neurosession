@@ -28,7 +28,7 @@ It was built for the **GIGA Consciousness Lab** (University of Liège) to suppor
 
 A researcher signs in and gets access to four things:
 
-1. **Participant records** — pseudonymized participant profiles (age, sex, participant code) plus baseline psychometric scores: EHS (hypnotic susceptibility), STAI (state/trait anxiety), QPI (hypnotic depth), TAS (alexithymia), and DES (dissociation).
+1. **Participant records** — pseudonymized participant profiles (age, sex, participant code) plus baseline psychometric scores: EHS (hypnotic susceptibility), STAI (state/trait anxiety), QPI (immersion propensity — Questionnaire sur la Propension à l'Immersion), TAS (absorption — Tellegen Absorption Scale), and DES (dissociation).
 2. **Session documentation** — for each participant, a record of their VRH session and/or HYP session: pre/post VAS scores (anxiety, pain), subjective experience (absorption, dissociation, automaticity, vigilance, time perception), cybersickness (CSQ), presence, and an 8-item satisfaction questionnaire.
 3. **Study monitoring** — a dashboard showing which participants have completed which session type and which are still missing data, so nothing falls through the cracks as the study progresses.
 4. **LLM-assisted reporting** *(in progress)* — a first-draft participant summary generated from the collected data, intended purely as a documentation starting point. Every generated summary requires human review before it's used in any report or publication.
