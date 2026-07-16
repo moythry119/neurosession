@@ -167,6 +167,12 @@ and run with the `local` Spring profile active (`SPRING_PROFILES_ACTIVE=local`).
 
 The app is served at **http://localhost:8080** — the static frontend and REST API are on the same origin, so there's nothing else to start.
 
+> **Windows troubleshooting:** if report generation fails with `PKIX path building failed: unable to find valid certification path to requested target`, it means the JVM's own trust store doesn't trust whatever is terminating TLS for outbound HTTPS on your machine (commonly antivirus/security software doing TLS inspection — Windows itself trusts it, but Java has a separate trust store). Fix by running with `-Djavax.net.ssl.trustStoreType=Windows-ROOT`, e.g.:
+> ```bash
+> ./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-Djavax.net.ssl.trustStoreType=Windows-ROOT"
+> ```
+> or add the same `-D` flag to your IDE's run configuration VM options.
+
 ### 4. Create an account and log in
 
 ```bash
